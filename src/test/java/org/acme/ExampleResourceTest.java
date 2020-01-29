@@ -38,7 +38,17 @@ public class ExampleResourceTest {
              .body(is("hello"));
     }
 
+    @Test
+    void testWs() {
 
+        //StatusCode 500 is excepted, because there's a timeout and no fallback defined
+        given()
+                .when()
+                .get("/example/testAnnotations")
+                .then()
+                .statusCode(500);
+
+    }
 
     // Workaround to fix https://github.com/quarkusio/quarkus/issues/1724.
     // This only works if using PanacheRepositoryBase
